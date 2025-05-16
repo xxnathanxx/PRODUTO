@@ -1,0 +1,51 @@
+import random
+
+cartas = [
+    {
+        "nome": "Dragão Flamejante",
+        "força": 90,
+        "defesa": 70,
+        "magia": 60
+    },
+    {
+        "nome": "Golem de Pedra",
+        "força": 80,
+        "defesa": 90,
+        "magia": 40
+    },
+    {
+        "nome": "Feiticeira Sombria",
+        "força": 60,
+        "defesa": 50,
+        "magia": 95
+    },
+    {
+        "nome": "Cavaleiro de Aço",
+        "força": 85,
+        "defesa": 85,
+        "magia": 30
+    }
+]
+
+carta_jogador = random.choice(cartas)
+carta_computador = random.choice([c for c in cartas if c != carta_jogador])
+
+print("\n🎴 Sua carta:")
+for atributo, valor in carta_jogador.items():
+    print(f"{atributo.capitalize()}: {valor}")
+
+escolha = input("\nEscolha o atributo para competir (força, defesa ou magia): ").lower()
+
+if escolha not in ["força", "defesa", "magia"]:
+    print("Atributo inválido! Você perdeu a rodada.")
+else:
+    print(f"\n🧠 Computador escolheu a carta: {carta_computador['nome']}")
+    print(f"{escolha.capitalize()} do Computador: {carta_computador[escolha]}")
+    print(f"{escolha.capitalize()} do Jogador: {carta_jogador[escolha]}")
+
+    if carta_jogador[escolha] > carta_computador[escolha]:
+        print("\n✅ Você venceu!")
+    elif carta_jogador[escolha] < carta_computador[escolha]:
+        print("\n❌ Você perdeu!")
+    else:
+        print("\n🤝 Empate!")
